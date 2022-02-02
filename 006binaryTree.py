@@ -40,20 +40,20 @@ def stringifyBinaryTree(binaryTree):
   global prettyPrintString
   currentDepth = 1
   while currentDepth < depth:
-    recursivePrint(binaryTree,currentDepth,0)
+    recursiveStringifyLevel(binaryTree,currentDepth,0)
     prettyPrintString.append(printString)
     printString = ''
     currentDepth += 1
 
-def recursivePrint(binaryTreePrint,printDepth,currentDepth):
+def recursiveStringifyLevel(binaryTreePrint,printDepth,currentDepth):
   if len(binaryTreePrint) == 1 or currentDepth > printDepth:
     return
   elif currentDepth == printDepth:
     global printString 
     printString += f'{binaryTreePrint[0]} '
   else:
-    recursivePrint(binaryTreePrint[1],printDepth,currentDepth+1)
-    recursivePrint(binaryTreePrint[2],printDepth,currentDepth+1)
+    recursiveStringifyLevel(binaryTreePrint[1],printDepth,currentDepth+1)
+    recursiveStringifyLevel(binaryTreePrint[2],printDepth,currentDepth+1)
 
 def rightSidePrintBinaryTree():
   global prettyPrintString
