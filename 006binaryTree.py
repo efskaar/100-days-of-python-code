@@ -20,15 +20,17 @@ class BinaryTree():
       for line in infile:
         self.addToBinaryTree(line)
 
-  def depthBinaryTree(self,localBinaryTree,depth):
+  def depthBinaryTreeHelper(self,localBinaryTree,depth):
     if len(localBinaryTree) == 1:
       return
     else:
       depth +=1
       self.updateDepth(depth)
-      self.depthBinaryTree(localBinaryTree[1],depth)
-      self.depthBinaryTree(localBinaryTree[2],depth)
+      self.depthBinaryTreeHelper(localBinaryTree[1],depth)
+      self.depthBinaryTreeHelper(localBinaryTree[2],depth)
 
+  def depthBinaryTree(self):
+    self.depthBinaryTreeHelper(self.binaryTree,0)
 
   def updateDepth(self,newDepth):
     self.depth = newDepth if newDepth>self.depth else self.depth
@@ -93,7 +95,7 @@ class BinaryTree():
 if '__main__' == __name__:
   bt = BinaryTree()
   bt.readFileInput('006outfile.txt')
-  bt.depthBinaryTree(bt.binaryTree,0)
+  bt.depthBinaryTree()
   bt.stringifyBinaryTree()
   bt.rightSidePrintBinaryTree()
   bt.leftSidePrintBinaryTree()
