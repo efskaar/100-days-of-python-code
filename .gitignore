@@ -9,7 +9,6 @@ __pycache__/
 *.svg
 *.csv
 
-
 # C extensions
 *.so
 
