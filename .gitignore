@@ -3,8 +3,11 @@ __pycache__/
 *.py[cod]
 *$py.class
 
-#ignore txt files
+#ignore additional files that aren't usefull for this repository
 *.txt
+*.png
+*.svg
+
 
 # C extensions
 *.so
