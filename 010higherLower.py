@@ -26,45 +26,46 @@ def waitForInput(allowedKeys):
 
 
 def game():
-  score = 0
-  alive = True
-  oldItem = randomIndex(-1)
-  while alive:
-    os.system('cls')
-    print(logo)
-    print('Guess if the last has higher or lower follower count than the first:\n')
-    #get an opponent
-    newItem = randomIndex(oldItem)
-    
-    #write out challange
-    writeOutItem(oldItem)
-    print(vs)
-    writeOutItem(newItem)
-    #options are specified for the user
-    print(f'\nPress ESC if you think the last is lower')
-    print(f'Press Space if you think the last is higher')
+  print(logo)
+  print('Press Enter to start or ESC to exit')
+  while waitForInput(['esc','enter']) == 'enter':
+    score = 0
+    alive = True
+    oldItem = randomIndex(-1)
+    while alive:
+      os.system('cls')
+      #get an opponent
+      newItem = randomIndex(oldItem)
+      
+      #write out challange
+      writeOutItem(oldItem)
+      print(vs)
+      writeOutItem(newItem)
+      #options are specified for the user
+      print(f'\nPress W if you think the last has fewer followers')
+      print(f'Press S if you think the last has more followers')
 
-    #wait for user to choose one of the two
-    playerInput = waitForInput(['esc','space'])
+      #wait for user to choose one of the two
+      playerInput = waitForInput(['w','s'])
 
-    #pick out the choice 
-    bothFollowersCount = [data[oldItem]["follower_count"],data[newItem]["follower_count"]]
-    choiceFollowers = bothFollowersCount[playerInput == 'space']
-    
-    writeFollowersAndName(oldItem)
-    writeFollowersAndName(newItem)
-    
-    if choiceFollowers != max(bothFollowersCount):
-      alive = False
-      print(f'\nGame Over! You reached a score of {score}')
-      return
-    score += 1
-    oldItem = newItem
-    input('Press Enter to continue:')
+      #pick out the choice 
+      bothFollowersCount = [data[oldItem]["follower_count"],data[newItem]["follower_count"]]
+      choiceFollowers = bothFollowersCount[playerInput == 's']
+      print('')
+      writeFollowersAndName(oldItem)
+      writeFollowersAndName(newItem)
+      
+      if choiceFollowers != max(bothFollowersCount):
+        alive = False
+        print(f'\nGame Over! You reached a score of {score}\n')
+      else:
+        score += 1
+        oldItem = newItem
+        print(f'\nYou are correct! You now have {score} points\n')
+        print('Press Enter to continue:')
+        waitForInput(['enter'])
+    print('\nEnter for play again\nESC for exit')
+  
 
 if '__main__' == __name__:
   game()
-  print('\nEnter for play again\nESC for exit')
-  while waitForInput(['esc','enter']) == 'enter':
-    game()
-    print('\nEnter for play again\nESC for exit')
