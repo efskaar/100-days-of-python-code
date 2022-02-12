@@ -7,7 +7,6 @@ __pycache__/
 *.txt
 *.png
 *.svg
-*.csv
 
 # C extensions
 *.so
