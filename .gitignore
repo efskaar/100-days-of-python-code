@@ -8,6 +8,7 @@ __pycache__/
 *.png
 *.svg
 *.exe
+*INTRO*.py
 
 # C extensions
 *.so
