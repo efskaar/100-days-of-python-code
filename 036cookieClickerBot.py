@@ -3,7 +3,7 @@ from selenium.webdriver.common.by import By
 
 
 
-chrome_driver_path = "C:/Users/skaar/.wdm/drivers/chromedriver/win32/98.0.4758.102/chromedriver.exe"
+chrome_driver_path = ""
 driver = webdriver.Chrome(executable_path=chrome_driver_path)
 url = 'https://orteil.dashnet.org/cookieclicker/'
 driver.get(url)
